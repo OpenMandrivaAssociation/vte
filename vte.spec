@@ -1,0 +1,152 @@
+%define lib_major 9
+%define lib_name %mklibname %{name} %{lib_major}
+
+%if %mdkversion < 200610
+%define py_platsitedir %_libdir/python%pyver/site-packages/
+%endif
+
+Name: vte
+Version: 0.16.0
+Release: %mkrel 9
+Summary: An terminal emulator widget
+License: LGPL
+Group: System/Libraries
+BuildRoot: %{_tmppath}/%{name}-%{version}-buildroot
+Source0: ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
+# (fc) 0.16.0-2mdv fix scrolling bug with nvi (GNOME bug #417652)
+Patch0: vte-0.16.0-scrollingbug.patch
+# (fc) 0.16.0-2mdv fix double expose (GNOME bug #416635)
+Patch1: vte-0.16.0-fixdoubleexpose.patch
+# (fc) 0.16.0-2mdv add reaper python binding (GNOME bug #320127)
+Patch2: vte-0.16.0-reaper-python-binding.patch
+# (fc) 0.16.0-2mdv fix transparency (GNOME #418073, Mdv bug #29510)
+Patch3: vte-0.16.0-transparency.patch
+# (fc) 0.16.0-5mdv prevent invalid read with preedit cursor (GNOME bug #418588)
+Patch4: vte-0.16.0-preeditcursor.patch
+# (fc) 0.16.0-6mdv fix rendering glitch for autowrapped chars (GNOME bug #416634) (SVN)
+Patch5: vte-0.16.0-autowrappedglitch.patch
+# (fc) 0.16.0-6mdv fix mouse scrolling (GNOME bug #418910) (SVN)
+Patch6: vte-0.16.0-mousescroll.patch
+# (fc) 0.16.0-6mdv detect dpi change (GNOME bug #417301) (SVN)
+Patch7: vte-0.16.0-dpichange.patch
+# (fc) 0.16.0-7mdv fix workspace refresh (GNOME bug #419116)
+Patch8: vte-0.16.0-workspacerefresh.patch
+# (fc) 0.16.0-7mdv fix expose events not processed when receiving unseen incoming data (GNOME #420067)
+Patch9: vte-0.16.0-fixunseenincoming.patch
+# (fc) 0.16.0-7mdv fix vte becomeing unresponsive after workspace switch (GNOME bug #414716)
+Patch10: vte-0.16.0-workspaceunresponsive.patch
+# (fc) 0.16.0-8mdv fix glyph truncated near cursor (GNOME bug #420935)
+Patch11: vte-0.16.0-fixcursorglyph.patch
+# (fc) 0.16.0-9mdv fix root location when embedding widget (GNOME bug #422385) (SVN)
+Patch12: vte-0.16.0-fixrootlocation.patch
+
+BuildRequires: gtk+2-devel
+BuildRequires: libxft-devel
+BuildRequires: libmesaglu-devel
+BuildRequires: ncurses-devel
+BuildRequires: automake1.7
+BuildRequires: gtk-doc
+BuildRequires: python-devel
+BuildRequires: pygtk2.0-devel
+BuildRequires: perl-XML-Parser
+URL: http://www.gnome.org/
+
+%description
+VTE is a terminal emulator widget for use with GTK+ 2.0.
+
+
+%package -n python-%{name}
+Summary: Python binding for VTE
+Group: Development/Python
+Requires: %{name} >= %{version}
+
+%description -n  python-%{name}
+Python binding for VTE, a terminal emulator widget for use 
+with GTK+ 2.0.
+
+
+%package -n %{lib_name}
+Summary: A terminal emulator widget
+Group: System/Libraries
+Requires: %{name} >= %{version}
+
+%description -n %{lib_name}
+VTE is a terminal emulator widget for use with GTK+ 2.0. 
+
+%package -n %{lib_name}-devel
+Summary: Files needed for developing applications which use VTE
+Group: Development/C
+Provides:  lib%{name}-devel = %{version}-%{release}
+Provides:  %{name}-devel = %{version}-%{release}
+Requires:  %{lib_name} = %{version}
+Requires: gtk+2-devel
+Requires: ncurses-devel
+
+%description -n %{lib_name}-devel
+VTE is a terminal emulator widget for use with GTK+ 2.0.  This
+package contains the files needed for building applications using VTE.
+
+%prep
+%setup -q
+%patch0 -p1 -b .fixscrolling
+%patch1 -p1 -b .fixdoubleexpose
+%patch2 -p1 -b .reaper-python-binding
+%patch3 -p1 -b .fixtransparency
+%patch4 -p1 -b .preeditcursor
+%patch5 -p1 -b .autowrappedglitch
+%patch6 -p1 -b .mousescroll
+%patch7 -p1 -b .dpichange
+%patch8 -p1 -b .workspacerefresh
+%patch9 -p1 -b .unseenincoming
+%patch10 -p1 -b .workspaceunresponsive
+%patch11 -p1 -b .fixglyphcursor
+%patch12 -p1 -b .fixrootlocation
+
+%build
+
+%configure2_5x --enable-shared --enable-static --libexecdir=%{_libdir}/%{name} --enable-python --enable-gtk-doc
+
+%make 
+
+%install
+rm -fr $RPM_BUILD_ROOT
+
+%makeinstall_std
+
+find $RPM_BUILD_ROOT/%py_platsitedir -name '*.a' | xargs rm -f
+find $RPM_BUILD_ROOT/%py_platsitedir -name '*.la' | xargs rm -f
+%find_lang %{name}
+
+%clean
+rm -fr $RPM_BUILD_ROOT
+
+%post -p /sbin/ldconfig -n %{lib_name}
+
+%postun -p /sbin/ldconfig -n %{lib_name}
+
+%files -f %{name}.lang
+%defattr(-,root,root)
+%doc COPYING HACKING NEWS README
+%{_bindir}/*
+%{_libdir}/%{name}
+%attr(2711,root,utmp) %{_libdir}/%{name}/gnome-pty-helper
+%{_datadir}/%{name}
+
+%files -n %{lib_name}
+%defattr(-,root,root)
+%{_libdir}/*.so.%{lib_major}*
+
+%files -n %{lib_name}-devel
+%defattr(-,root,root)
+%doc %{_datadir}/gtk-doc/html/*
+%{_includedir}/*
+%{_libdir}/*.a
+%attr(644,root,root) %{_libdir}/*.la
+%{_libdir}/*.so
+%{_libdir}/pkgconfig/*
+
+%files -n python-%{name}
+%defattr(-,root,root)
+%py_platsitedir/gtk-2.0/vtemodule.so
+
+
