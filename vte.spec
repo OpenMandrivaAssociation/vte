@@ -6,7 +6,7 @@
 %endif
 
 Name: vte
-Version: 0.16.2
+Version: 0.16.3
 Release: %mkrel 1
 Summary: An terminal emulator widget
 License: LGPL
@@ -17,9 +17,6 @@ Source0: ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz
 Patch0: vte-0.16.0-scrollingbug.patch
 # (fc) 0.16.0-2mdv add reaper python binding (GNOME bug #320127)
 Patch2: vte-0.16.0-reaper-python-binding.patch
-# (fc) 0.16.0-7mdv fix vte becomeing unresponsive after workspace switch (GNOME bug #414716)
-Patch10: vte-0.16.0-workspaceunresponsive.patch
-
 BuildRequires: gtk+2-devel
 BuildRequires: libxft-devel
 BuildRequires: libmesaglu-devel
@@ -70,7 +67,6 @@ package contains the files needed for building applications using VTE.
 %setup -q
 %patch0 -p1 -b .fixscrolling
 %patch2 -p1 -b .reaper-python-binding
-%patch10 -p1 -b .workspaceunresponsive
 
 %build
 
