@@ -7,16 +7,16 @@
 
 Name: vte
 Version: 0.16.4
-Release: %mkrel 1
+Release: %mkrel 2
 Summary: An terminal emulator widget
 License: LGPL
 Group: System/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-buildroot
 Source0: ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
-# (fc) 0.16.0-2mdv fix scrolling bug with nvi (GNOME bug #417652)
-Patch0: vte-0.16.0-scrollingbug.patch
 # (fc) 0.16.0-2mdv add reaper python binding (GNOME bug #320127)
 Patch2: vte-0.16.0-reaper-python-binding.patch
+# (fc) 0.16.4-2mdv fix underline (SVN)
+Patch3: vte-0.16.4-fixunderline.patch
 BuildRequires: gtk+2-devel
 BuildRequires: libxft-devel
 BuildRequires: libmesaglu-devel
@@ -65,8 +65,8 @@ package contains the files needed for building applications using VTE.
 
 %prep
 %setup -q
-%patch0 -p1 -b .fixscrolling
 %patch2 -p1 -b .reaper-python-binding
+%patch3 -p1 -b .fixunderline
 
 %build
 
