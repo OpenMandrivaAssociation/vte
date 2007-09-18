@@ -1,12 +1,13 @@
 %define lib_major 9
 %define lib_name %mklibname %{name} %{lib_major}
+%define develname %mklibname -d %name
 
 %if %mdkversion < 200610
 %define py_platsitedir %_libdir/python%pyver/site-packages/
 %endif
 
 Name: vte
-Version: 0.16.8
+Version: 0.16.9
 Release: %mkrel 1
 Summary: An terminal emulator widget
 License: LGPL
@@ -48,7 +49,7 @@ Requires: %{name} >= %{version}
 %description -n %{lib_name}
 VTE is a terminal emulator widget for use with GTK+ 2.0. 
 
-%package -n %{lib_name}-devel
+%package -n %develname
 Summary: Files needed for developing applications which use VTE
 Group: Development/C
 Provides:  lib%{name}-devel = %{version}-%{release}
@@ -56,8 +57,9 @@ Provides:  %{name}-devel = %{version}-%{release}
 Requires:  %{lib_name} = %{version}
 Requires: gtk+2-devel
 Requires: ncurses-devel
+Obsoletes: %mklibname -d %name 9
 
-%description -n %{lib_name}-devel
+%description -n %develname
 VTE is a terminal emulator widget for use with GTK+ 2.0.  This
 package contains the files needed for building applications using VTE.
 
@@ -99,7 +101,7 @@ rm -fr $RPM_BUILD_ROOT
 %defattr(-,root,root)
 %{_libdir}/*.so.%{lib_major}*
 
-%files -n %{lib_name}-devel
+%files -n %develname
 %defattr(-,root,root)
 %doc %{_datadir}/gtk-doc/html/*
 %{_includedir}/*
