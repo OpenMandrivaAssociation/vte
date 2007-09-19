@@ -8,7 +8,7 @@
 
 Name: vte
 Version: 0.16.9
-Release: %mkrel 1
+Release: %mkrel 2
 Summary: An terminal emulator widget
 License: LGPL
 Group: System/Libraries
