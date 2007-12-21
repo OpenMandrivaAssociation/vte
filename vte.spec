@@ -12,6 +12,7 @@ Release: %mkrel 1
 Summary: An terminal emulator widget
 License: LGPL
 Group: System/Libraries
+BuildRoot: %{_tmppath}/%{name}-%{version}-buildroot
 Source0: ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
 # (fc) 0.16.0-2mdv add reaper python binding (GNOME bug #320127)
 Patch2: vte-0.16.0-reaper-python-binding.patch
