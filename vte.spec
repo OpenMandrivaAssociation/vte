@@ -7,7 +7,7 @@
 %endif
 
 Name: vte
-Version: 0.16.11
+Version: 0.16.12
 Release: %mkrel 1
 Summary: An terminal emulator widget
 License: LGPL
