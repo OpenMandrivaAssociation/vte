@@ -24,7 +24,7 @@ BuildRequires: automake1.7
 BuildRequires: gtk-doc
 BuildRequires: python-devel
 BuildRequires: pygtk2.0-devel
-BuildRequires: perl-XML-Parser
+BuildRequires: intltool
 URL: http://www.gnome.org/
 
 %description
