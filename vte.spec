@@ -85,9 +85,13 @@ find $RPM_BUILD_ROOT/%py_platsitedir -name '*.la' | xargs rm -f
 %clean
 rm -fr $RPM_BUILD_ROOT
 
+%if %mdkversion < 200900
 %post -p /sbin/ldconfig -n %{lib_name}
+%endif
 
+%if %mdkversion < 200900
 %postun -p /sbin/ldconfig -n %{lib_name}
+%endif
 
 %files -f %{name}.lang
 %defattr(-,root,root)
