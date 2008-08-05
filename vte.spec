@@ -7,10 +7,10 @@
 %endif
 
 Name: vte
-Version: 0.16.14
+Version: 0.17.1
 Release: %mkrel 1
 Summary: An terminal emulator widget
-License: LGPL
+License: LGPLv2+
 Group: System/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-buildroot
 Source0: ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
