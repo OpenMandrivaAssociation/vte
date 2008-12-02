@@ -7,15 +7,13 @@
 %endif
 
 Name: vte
-Version: 0.17.4
+Version: 0.19.1
 Release: %mkrel 1
 Summary: An terminal emulator widget
 License: LGPLv2+
 Group: System/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-buildroot
 Source0: ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
-# (fc) 0.16.0-2mdv add reaper python binding (GNOME bug #320127)
-Patch2: vte-0.16.0-reaper-python-binding.patch
 BuildRequires: gtk+2-devel
 BuildRequires: libxft-devel
 BuildRequires: libmesaglu-devel
@@ -65,7 +63,6 @@ package contains the files needed for building applications using VTE.
 
 %prep
 %setup -q
-%patch2 -p1 -b .reaper-python-binding
 
 %build
 
