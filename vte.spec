@@ -7,7 +7,7 @@
 %endif
 
 Name: vte
-Version: 0.19.3
+Version: 0.19.4
 Release: %mkrel 1
 Summary: An terminal emulator widget
 License: LGPLv2+
@@ -110,6 +110,7 @@ rm -fr $RPM_BUILD_ROOT
 %attr(644,root,root) %{_libdir}/*.la
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*
+%_datadir/pygtk/2.0/defs/vte.defs
 
 %files -n python-%{name}
 %defattr(-,root,root)
