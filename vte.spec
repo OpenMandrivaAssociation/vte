@@ -1,4 +1,4 @@
-%define lib_major 9
+%define lib_major 10
 %define lib_name %mklibname %{name} %{lib_major}
 %define develname %mklibname -d %name
 
@@ -7,7 +7,7 @@
 %endif
 
 Name: vte
-Version: 0.20.3
+Version: 0.20.4
 Release: %mkrel 1
 Summary: An terminal emulator widget
 License: LGPLv2+
