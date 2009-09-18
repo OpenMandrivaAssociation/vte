@@ -7,13 +7,16 @@
 %endif
 
 Name: vte
-Version: 0.21.5
+Version: 0.21.6
 Release: %mkrel 1
 Summary: An terminal emulator widget
 License: LGPLv2+
 Group: System/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-buildroot
 Source0: ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
+#gw from git, fix build
+#https://bugzilla.gnome.org/show_bug.cgi?id=595494
+Patch: vte-revert-symbol-hiding.patch
 BuildRequires: gtk+2-devel
 BuildRequires: libxft-devel
 BuildRequires: libmesaglu-devel
@@ -63,6 +66,9 @@ package contains the files needed for building applications using VTE.
 
 %prep
 %setup -q
+%patch -p1
+autoreconf -fi
+rm -f src/marshal.[ch]
 
 %build
 
