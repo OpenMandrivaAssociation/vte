@@ -7,7 +7,7 @@
 %endif
 
 Name: vte
-Version: 0.23.1
+Version: 0.23.2
 Release: %mkrel 1
 Summary: An terminal emulator widget
 License: LGPLv2+
@@ -66,7 +66,8 @@ package contains the files needed for building applications using VTE.
 
 %build
 
-%configure2_5x --enable-shared --enable-static --libexecdir=%{_libdir}/%{name} --enable-python --enable-gtk-doc
+%configure2_5x --enable-shared --enable-static --libexecdir=%{_libdir}/%{name} --enable-python
+# --enable-gtk-doc
 
 %make 
 
