@@ -9,7 +9,7 @@
 Name: vte
 Version: 0.23.5
 Release: %mkrel 1
-Summary: An terminal emulator widget
+Summary: A terminal emulator widget
 License: LGPLv2+
 Group: System/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-buildroot
