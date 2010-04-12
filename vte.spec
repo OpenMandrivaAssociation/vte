@@ -8,12 +8,15 @@
 
 Name: vte
 Version: 0.24.0
-Release: %mkrel 1
+Release: %mkrel 2
 Summary: A terminal emulator widget
 License: LGPLv2+
 Group: System/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-buildroot
 Source0: ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
+#gw fix for broken transparency
+#https://bugzilla.gnome.org/show_bug.cgi?id=614511
+Patch0: vte-Reversed-and-one-error-saturation-level.patch
 BuildRequires: gtk+2-devel
 BuildRequires: libxft-devel
 BuildRequires: libmesaglu-devel
@@ -63,11 +66,11 @@ package contains the files needed for building applications using VTE.
 
 %prep
 %setup -q
+%apply_patches
 
 %build
 
-%configure2_5x --enable-shared --enable-static --libexecdir=%{_libdir}/%{name} --enable-python
-# --enable-gtk-doc
+%configure2_5x --enable-shared --enable-static --libexecdir=%{_libdir}/%{name} --enable-python --enable-gtk-doc
 
 %make 
 
