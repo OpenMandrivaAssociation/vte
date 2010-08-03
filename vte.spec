@@ -8,12 +8,13 @@
 
 Name: vte
 Version: 0.25.1
-Release: %mkrel 1
+Release: %mkrel 2
 Summary: A terminal emulator widget
 License: LGPLv2+
 Group: System/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-buildroot
 Source0: ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
+Patch0: vte-0.25.1-cursor.patch
 BuildRequires: gtk+2-devel
 BuildRequires: libxft-devel
 BuildRequires: libmesaglu-devel
