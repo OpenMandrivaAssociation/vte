@@ -2,19 +2,15 @@
 %define lib_name %mklibname %{name} %{lib_major}
 %define develname %mklibname -d %name
 
-%if %mdkversion < 200610
-%define py_platsitedir %_libdir/python%pyver/site-packages/
-%endif
-
+%define api 0.0
 Name: vte
-Version: 0.25.1
-Release: %mkrel 2
+Version: 0.25.90
+Release: %mkrel 1
 Summary: A terminal emulator widget
 License: LGPLv2+
 Group: System/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-buildroot
 Source0: ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
-Patch0: vte-0.25.1-cursor.patch
 BuildRequires: gtk+2-devel
 BuildRequires: libxft-devel
 BuildRequires: libmesaglu-devel
@@ -79,24 +75,17 @@ rm -fr $RPM_BUILD_ROOT
 
 find $RPM_BUILD_ROOT/%py_platsitedir -name '*.a' | xargs rm -f
 find $RPM_BUILD_ROOT/%py_platsitedir -name '*.la' | xargs rm -f
-%find_lang %{name}
+%find_lang %{name}-%api
 
 %clean
 rm -fr $RPM_BUILD_ROOT
 
-%if %mdkversion < 200900
-%post -p /sbin/ldconfig -n %{lib_name}
-%endif
-
-%if %mdkversion < 200900
-%postun -p /sbin/ldconfig -n %{lib_name}
-%endif
-
-%files -f %{name}.lang
+%files -f %{name}-%api.lang
 %defattr(-,root,root)
 %doc COPYING HACKING NEWS README
 %{_bindir}/*
 %{_libdir}/%{name}
+%{_libdir}/%{name}-%api
 %attr(2711,root,utmp) %{_libdir}/%{name}/gnome-pty-helper
 %{_datadir}/%{name}
 
