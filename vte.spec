@@ -4,8 +4,8 @@
 
 %define api 0.0
 Name: vte
-Version: 0.25.90
-Release: %mkrel 2
+Version: 0.25.91
+Release: %mkrel 1
 Summary: A terminal emulator widget
 License: LGPLv2+
 Group: System/Libraries
