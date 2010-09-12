@@ -5,7 +5,7 @@
 %define api 0.0
 Name: vte
 Version: 0.25.91
-Release: %mkrel 1
+Release: %mkrel 2
 Summary: A terminal emulator widget
 License: LGPLv2+
 Group: System/Libraries
@@ -20,6 +20,7 @@ BuildRequires: automake1.7
 BuildRequires: gtk-doc
 BuildRequires: python-devel
 BuildRequires: pygtk2.0-devel
+BuildRequires: gobject-introspection-devel
 BuildRequires: intltool
 URL: http://www.gnome.org/
 
@@ -41,6 +42,7 @@ with GTK+ 2.0.
 Summary: A terminal emulator widget
 Group: System/Libraries
 Requires: %{name} >= %{version}
+Conflicts: gir-repository < 0.6.6
 
 %description -n %{lib_name}
 VTE is a terminal emulator widget for use with GTK+ 2.0. 
@@ -50,7 +52,7 @@ Summary: Files needed for developing applications which use VTE
 Group: Development/C
 Provides:  lib%{name}-devel = %{version}-%{release}
 Provides:  %{name}-devel = %{version}-%{release}
-Requires:  %{lib_name} = %{version}
+Requires:  %{lib_name} = %{version}-%release
 Requires: gtk+2-devel
 Requires: ncurses-devel
 Obsoletes: %mklibname -d %name 9
@@ -65,7 +67,7 @@ package contains the files needed for building applications using VTE.
 
 %build
 
-%configure2_5x --enable-shared --enable-static --libexecdir=%{_libdir}/%{name} --enable-python --enable-gtk-doc
+%configure2_5x --enable-shared --enable-static --libexecdir=%{_libdir}/%{name} --enable-python --enable-gtk-doc --enable-introspection
 
 %make 
 
@@ -93,6 +95,7 @@ rm -fr $RPM_BUILD_ROOT
 %files -n %{lib_name}
 %defattr(-,root,root)
 %{_libdir}/*.so.%{lib_major}*
+%_libdir/girepository-1.0/Vte-0.0.typelib
 
 %files -n %develname
 %defattr(-,root,root)
@@ -103,6 +106,7 @@ rm -fr $RPM_BUILD_ROOT
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*
 %_datadir/pygtk/2.0/defs/vte.defs
+%_datadir/gir-1.0/Vte-0.0.gir
 
 %files -n python-%{name}
 %defattr(-,root,root)
