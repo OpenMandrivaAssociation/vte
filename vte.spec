@@ -5,7 +5,7 @@
 %define api 0.0
 Name: vte
 Version: 0.26.2
-Release: %mkrel 1
+Release: %mkrel 2
 Summary: A terminal emulator widget
 License: LGPLv2+
 Group: System/Libraries
@@ -16,7 +16,7 @@ BuildRequires: gtk+2-devel
 BuildRequires: libxft-devel
 BuildRequires: libmesaglu-devel
 BuildRequires: ncurses-devel
-BuildRequires: automake1.7
+BuildRequires: automake
 BuildRequires: gtk-doc
 BuildRequires: python-devel
 BuildRequires: pygtk2.0-devel
