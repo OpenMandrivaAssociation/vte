@@ -4,17 +4,17 @@
 
 %define api 0.0
 Name: vte
-Version: 0.26.2
-Release: %mkrel 2
+Version: 0.28.0
+Release: %mkrel 1
 Summary: A terminal emulator widget
 License: LGPLv2+
 Group: System/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-buildroot
 Source0: ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
 Patch0:	vte-0.25.90-alt_meta.patch
+Patch1: vte-0.28.0-link.patch
 BuildRequires: gtk+2-devel
-BuildRequires: libxft-devel
-BuildRequires: libmesaglu-devel
+BuildRequires: libx11-devel
 BuildRequires: ncurses-devel
 BuildRequires: automake
 BuildRequires: gtk-doc
@@ -27,7 +27,6 @@ URL: http://www.gnome.org/
 %description
 VTE is a terminal emulator widget for use with GTK+ 2.0.
 
-
 %package -n python-%{name}
 Summary: Python binding for VTE
 Group: Development/Python
@@ -36,7 +35,6 @@ Requires: %{name} >= %{version}
 %description -n  python-%{name}
 Python binding for VTE, a terminal emulator widget for use 
 with GTK+ 2.0.
-
 
 %package -n %{lib_name}
 Summary: A terminal emulator widget
@@ -53,8 +51,6 @@ Group: Development/C
 Provides:  lib%{name}-devel = %{version}-%{release}
 Provides:  %{name}-devel = %{version}-%{release}
 Requires:  %{lib_name} = %{version}-%release
-Requires: gtk+2-devel
-Requires: ncurses-devel
 Obsoletes: %mklibname -d %name 9
 
 %description -n %develname
@@ -66,8 +62,7 @@ package contains the files needed for building applications using VTE.
 %apply_patches
 
 %build
-
-%configure2_5x --enable-shared --enable-static --libexecdir=%{_libdir}/%{name} --enable-python --enable-gtk-doc --enable-introspection
+%configure2_5x --enable-shared --enable-static --libexecdir=%{_libdir}/%{name} --enable-python --enable-gtk-doc --enable-introspection --with-gtk=2.0
 
 %make 
 
@@ -88,7 +83,6 @@ rm -fr $RPM_BUILD_ROOT
 %doc COPYING HACKING NEWS README
 %{_bindir}/*
 %{_libdir}/%{name}
-%{_libdir}/%{name}-%api
 %attr(2711,root,utmp) %{_libdir}/%{name}/gnome-pty-helper
 %{_datadir}/%{name}
 
