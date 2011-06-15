@@ -4,13 +4,13 @@
 
 %define api 0.0
 Name: vte
-Version: 0.28.0
+Version: 0.28.1
 Release: %mkrel 1
 Summary: A terminal emulator widget
 License: LGPLv2+
 Group: System/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-buildroot
-Source0: ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
+Source0: ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.xz
 Patch0:	vte-0.25.90-alt_meta.patch
 Patch1: vte-0.28.0-link.patch
 BuildRequires: gtk+2-devel
