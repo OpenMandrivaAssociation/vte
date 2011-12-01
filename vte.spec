@@ -67,16 +67,16 @@ package contains the files needed for building applications using VTE.
 %make 
 
 %install
-rm -fr $RPM_BUILD_ROOT
+rm -fr %{buildroot}
 
 %makeinstall_std
 
-find $RPM_BUILD_ROOT/%py_platsitedir -name '*.a' | xargs rm -f
-find $RPM_BUILD_ROOT/%py_platsitedir -name '*.la' | xargs rm -f
+find %{buildroot}/%py_platsitedir -name '*.a' | xargs rm -f
+find %{buildroot}/%py_platsitedir -name '*.la' | xargs rm -f
 %find_lang %{name}-%api
 
 %clean
-rm -fr $RPM_BUILD_ROOT
+rm -fr %{buildroot}
 
 %files -f %{name}-%api.lang
 %defattr(-,root,root)
