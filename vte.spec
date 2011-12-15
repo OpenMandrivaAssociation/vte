@@ -5,7 +5,7 @@
 %define api 0.0
 Name: vte
 Version: 0.28.1
-Release: %mkrel 2
+Release: %mkrel 3
 Summary: A terminal emulator widget
 License: LGPLv2+
 Group: System/Libraries
@@ -72,7 +72,7 @@ rm -fr %{buildroot}
 %makeinstall_std
 
 find %{buildroot}/%py_platsitedir -name '*.a' | xargs rm -f
-find %{buildroot}/%py_platsitedir -name '*.la' | xargs rm -f
+find %{buildroot}/ -name '*.la' | xargs rm -f
 %find_lang %{name}-%api
 
 %clean
@@ -96,7 +96,6 @@ rm -fr %{buildroot}
 %doc %{_datadir}/gtk-doc/html/*
 %{_includedir}/*
 %{_libdir}/*.a
-%attr(644,root,root) %{_libdir}/*.la
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*
 %_datadir/pygtk/2.0/defs/vte.defs
