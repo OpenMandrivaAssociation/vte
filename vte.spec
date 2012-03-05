@@ -69,7 +69,7 @@ package contains the files needed for building applications using VTE.
 	--enable-introspection \
 	--with-gtk=2.0
 
-%make LIBS='-lgmodule-2.0'
+%make LIBS='-lm -lgmodule-2.0'
 
 %install
 rm -fr %{buildroot}
