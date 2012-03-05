@@ -69,7 +69,7 @@ package contains the files needed for building applications using VTE.
 	--enable-introspection \
 	--with-gtk=2.0
 
-%make LIBS='-lm -lgmodule-2.0'
+%make LIBS='-lm -lncurses -lutil -lgmodule-2.0'
 
 %install
 rm -fr %{buildroot}
@@ -82,7 +82,7 @@ find %{buildroot}/ -name '*.la' | xargs rm -f
 %files -f %{name}-%{api}.lang
 %doc COPYING HACKING NEWS README
 %{_bindir}/*
-%{_libdir}/%{name}
+%dir %{_libdir}/%{name}
 %attr(2711,root,utmp) %{_libdir}/%{name}/gnome-pty-helper
 %{_datadir}/%{name}
 
