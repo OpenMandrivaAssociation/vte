@@ -4,7 +4,7 @@
 %define develname %mklibname -d %{name}
 
 Name: vte
-Version: 0.28.1
+Version: 0.28.2
 Release: 4
 Summary: A terminal emulator widget
 License: LGPLv2+
@@ -13,6 +13,7 @@ URL: http://www.gnome.org/
 Source0: ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.xz
 Patch0:	vte-0.25.90-alt_meta.patch
 Patch1: vte-0.28.0-link.patch
+Patch2:	vte-0.28.2-scale.patch
 BuildRequires: gtk+2-devel
 BuildRequires: libx11-devel
 BuildRequires: ncurses-devel
