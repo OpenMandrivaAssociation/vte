@@ -3,54 +3,54 @@
 %define libname %mklibname %{name} %{major}
 %define develname %mklibname -d %{name}
 
-Name: vte
-Version: 0.28.2
-Release: 4
-Summary: A terminal emulator widget
-License: LGPLv2+
-Group: System/Libraries
-URL: http://www.gnome.org/
-Source0: ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.xz
-Patch0:	vte-0.25.90-alt_meta.patch
-Patch1: vte-0.28.0-link.patch
-Patch2:	vte-0.28.2-scale.patch
-BuildRequires: gtk+2-devel
-BuildRequires: libx11-devel
-BuildRequires: ncurses-devel
-BuildRequires: automake
-BuildRequires: gtk-doc
-BuildRequires: python-devel
-BuildRequires: pygtk2.0-devel
-BuildRequires: gobject-introspection-devel
-BuildRequires: intltool
+Name:		vte
+Version:	0.28.2
+Release:	1
+Summary:	A terminal emulator widget
+License:	LGPLv2+
+Group:		System/Libraries
+URL:		http://www.gnome.org/
+Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.xz
+Patch0:		vte-0.25.90-alt_meta.patch
+Patch1:		vte-0.28.0-link.patch
+Patch2:		vte-0.28.2-scale.patch
+BuildRequires:	gtk+2-devel
+BuildRequires:	libx11-devel
+BuildRequires:	ncurses-devel
+BuildRequires:	automake
+BuildRequires:	gtk-doc
+BuildRequires:	python-devel
+BuildRequires:	pygtk2.0-devel
+BuildRequires:	gobject-introspection-devel
+BuildRequires:	intltool
 
 %description
 VTE is a terminal emulator widget for use with GTK+ 2.0.
 
 %package -n python-%{name}
-Summary: Python binding for VTE
-Group: Development/Python
-Requires: %{name} >= %{version}
+Summary:	Python binding for VTE
+Group:		Development/Python
+Requires:	%{name} >= %{version}-%{release}
 
-%description -n  python-%{name}
+%description -n python-%{name}
 Python binding for VTE, a terminal emulator widget for use 
 with GTK+ 2.0.
 
 %package -n %{libname}
-Summary: A terminal emulator widget
-Group: System/Libraries
-Requires: %{name} >= %{version}
-Conflicts: gir-repository < 0.6.6
+Summary:	A terminal emulator widget
+Group:		System/Libraries
+Requires:	%{name} >= %{version}-%{release}
+Conflicts:	gir-repository < 0.6.6
 
 %description -n %{libname}
 VTE is a terminal emulator widget for use with GTK+ 2.0. 
 
 %package -n %{develname}
-Summary: Files needed for developing applications which use VTE
-Group: Development/C
-Provides:  %{name}-devel = %{version}-%{release}
-Requires:  %{libname} = %{version}-%{release}
-Obsoletes: %mklibname -d %name 9
+Summary:	Files needed for developing applications which use VTE
+Group:		Development/C
+Provides:	%{name}-devel = %{version}-%{release}
+Requires:	%{libname} = %{version}-%{release}
+Obsoletes:	%mklibname -d %name 9
 
 %description -n %{develname}
 VTE is a terminal emulator widget for use with GTK+ 2.0.  This
@@ -73,11 +73,11 @@ package contains the files needed for building applications using VTE.
 %make LIBS='-lm -lncurses -lutil -lgmodule-2.0'
 
 %install
-rm -fr %{buildroot}
 %makeinstall_std
 
 find %{buildroot}/%{py_platsitedir} -name '*.a' | xargs rm -f
 find %{buildroot}/ -name '*.la' | xargs rm -f
+
 %find_lang %{name}-%{api}
 
 %files -f %{name}-%{api}.lang
