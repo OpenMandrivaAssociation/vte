@@ -14,9 +14,9 @@ Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.xz
 Patch0:		vte-0.25.90-alt_meta.patch
 Patch1:		vte-0.28.0-link.patch
 Patch2:		vte-0.28.2-scale.patch
-BuildRequires:	gtk+2-devel
-BuildRequires:	libx11-devel
-BuildRequires:	ncurses-devel
+BuildRequires:	pkgconfig(gtk+-2.0) >= 2.20.0
+BuildRequires:	pkgconfig(x11)
+BuildRequires:	pkgconfig(ncurses)
 BuildRequires:	automake
 BuildRequires:	gtk-doc
 BuildRequires:	python-devel
