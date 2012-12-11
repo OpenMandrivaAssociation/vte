@@ -24,7 +24,7 @@ BuildRequires:	pkgconfig(gobject-introspectioni-1.0)
 BuildRequires:	pkgconfig(gtk+-2.0) >= 2.20.0
 BuildRequires:	pkgconfig(ncurses)
 BuildRequires:	pkgconfig(pygtk-2.0)
-BuildRequires:	pkfconfig(python)
+BuildRequires:	pkgconfig(python)
 BuildRequires:	pkgconfig(x11)
 
 %description
