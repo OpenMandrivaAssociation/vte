@@ -20,7 +20,7 @@ Patch2:		vte-0.28.2-scale.patch
 
 BuildRequires:	gtk-doc
 BuildRequires:	intltool
-BuildRequires:	pkgconfig(gobject-introspection)
+BuildRequires:	pkgconfig(gobject-introspectioni-1.0)
 BuildRequires:	pkgconfig(gtk+-2.0) >= 2.20.0
 BuildRequires:	pkgconfig(ncurses)
 BuildRequires:	pkgconfig(pygtk-2.0)
