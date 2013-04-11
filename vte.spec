@@ -9,7 +9,7 @@
 Summary:	A terminal emulator widget
 Name:		vte
 Version:	0.28.2
-Release:	2
+Release:	3
 License:	LGPLv2+
 Group:		System/Libraries
 URL:		http://www.gnome.org/
@@ -17,6 +17,7 @@ Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{url_ver}/%{name}-%{vers
 Patch0:		vte-0.25.90-alt_meta.patch
 Patch1:		vte-0.28.0-link.patch
 Patch2:		vte-0.28.2-scale.patch
+Patch3: 	vte-0.28.1-CVE-2012-2738.patch
 
 BuildRequires:	gtk-doc
 BuildRequires:	intltool
