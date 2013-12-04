@@ -23,9 +23,8 @@ Patch3:		0001-widget-Only-show-the-cursor-on-motion-if-moved.patch
 BuildRequires:	gtk-doc
 BuildRequires:	intltool
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
-BuildRequires:	pkgconfig(gtk+-2.0) >= 2.20.0
+BuildRequires:	pkgconfig(gtk+-3.0) >= 2.20.0
 BuildRequires:	pkgconfig(ncurses)
-BuildRequires:	pkgconfig(pygtk-2.0)
 BuildRequires:	pkgconfig(python)
 BuildRequires:	pkgconfig(x11)
 
@@ -80,9 +79,10 @@ package contains the files needed for building applications using VTE.
 	--enable-python \
 	--enable-gtk-doc \
 	--enable-introspection \
-	--with-gtk=2.0
+	--with-gtk=3.0
 
-%make LIBS='-lm -lncurses -lutil -lgmodule-2.0'
+%make
+#LIBS='-lm -lncurses -lutil -lgmodule-2.0'
 
 %install
 %makeinstall_std
