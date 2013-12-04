@@ -1,23 +1,24 @@
 %define url_ver %(echo %{version}|cut -d. -f1,2)
 
-%define api	0.0
+%define api	2.90
 %define major	9
-%define libname %mklibname %{name} %{major}
+%define libname %mklibname %{name} %{api} %{major}
 %define girname %mklibname %{name}-gir %{api}
 %define devname %mklibname -d %{name}
 
 Summary:	A terminal emulator widget
 Name:		vte
-Version:	0.28.2
-Release:	3
+Version:	0.35.0
+Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
 URL:		http://www.gnome.org/
 Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{url_ver}/%{name}-%{version}.tar.xz
-Patch0:		vte-0.25.90-alt_meta.patch
-Patch1:		vte-0.28.0-link.patch
-Patch2:		vte-0.28.2-scale.patch
-Patch3: 	vte-0.28.1-CVE-2012-2738.patch
+Patch1:		honey-I-shrank-the-terminal.patch
+# https://bugzilla.gnome.org/show_bug.cgi?id=663779
+Patch2:		vte-alt-meta-confusion.patch
+# https://bugzilla.gnome.org/show_bug.cgi?id=688456
+Patch3:		0001-widget-Only-show-the-cursor-on-motion-if-moved.patch
 
 BuildRequires:	gtk-doc
 BuildRequires:	intltool
@@ -94,12 +95,12 @@ find %{buildroot}/ -name '*.la' | xargs rm -f
 %files -f %{name}-%{api}.lang
 %doc COPYING HACKING NEWS README
 %{_bindir}/*
+%{_sysconfdir}/profile.d/vte.sh
 %dir %{_libdir}/%{name}
 %attr(2711,root,utmp) %{_libdir}/%{name}/gnome-pty-helper
-%{_datadir}/%{name}
 
 %files -n python-%{name}
-%{py_platsitedir}/gtk-2.0/vtemodule.so
+# % {py_platsitedir}/gtk-2.0/vtemodule.so
 
 %files -n %{libname}
 %{_libdir}/*.so.%{major}*
@@ -112,6 +113,4 @@ find %{buildroot}/ -name '*.la' | xargs rm -f
 %{_includedir}/*
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*
-%{_datadir}/pygtk/2.0/defs/vte.defs
-%{_datadir}/gir-1.0/Vte-0.0.gir
-
+%{_datadir}/gir-1.0/Vte-%{api}.gir
