@@ -99,6 +99,7 @@ find %{buildroot}/ -name '*.la' | xargs rm -f
 %doc COPYING HACKING NEWS README
 %{_bindir}/*
 %{_sysconfdir}/profile.d/vte.sh
+%{_datadir}/vte/termcap-0.0/xterm
 %dir %{_libdir}/%{name}
 %attr(2711,root,utmp) %{_libdir}/%{name}/gnome-pty-helper
 
