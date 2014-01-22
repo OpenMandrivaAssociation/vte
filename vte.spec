@@ -26,7 +26,7 @@ Patch6:		vte-0.28.0-link.patch
 BuildRequires:	gtk-doc
 BuildRequires:	intltool
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
-BuildRequires:	pkgconfig(gtk+-3.0) >= 2.20.0
+BuildRequires:	pkgconfig(gtk+-2.0) >= 2.20.0
 BuildRequires:	pkgconfig(ncurses)
 BuildRequires:	pkgconfig(python)
 BuildRequires:	pkgconfig(x11)
