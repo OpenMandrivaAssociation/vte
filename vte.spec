@@ -1,6 +1,6 @@
 %define url_ver %(echo %{version}|cut -d. -f1,2)
 
-%define api	2.90
+%define api	0.0
 %define major	9
 %define libname %mklibname %{name} %{api} %{major}
 %define girname %mklibname %{name}-gir %{api}
@@ -8,8 +8,8 @@
 
 Summary:	A terminal emulator widget
 Name:		vte
-Version:	0.35.0
-Release:	5
+Version:	0.28.2
+Release:	10
 License:	LGPLv2+
 Group:		System/Libraries
 URL:		http://www.gnome.org/
@@ -19,6 +19,9 @@ Patch1:		honey-I-shrank-the-terminal.patch
 Patch2:		vte-alt-meta-confusion.patch
 # https://bugzilla.gnome.org/show_bug.cgi?id=688456
 Patch3:		0001-widget-Only-show-the-cursor-on-motion-if-moved.patch
+Patch4:		vte-aarch64.patch
+Patch5:		vte-python-bugfixes.patch
+Patch6:		vte-0.28.0-link.patch
 
 BuildRequires:	gtk-doc
 BuildRequires:	intltool
@@ -79,7 +82,7 @@ package contains the files needed for building applications using VTE.
 	--enable-python \
 	--enable-gtk-doc \
 	--enable-introspection \
-	--with-gtk=3.0
+	--with-gtk=2.0
 
 %make
 #LIBS='-lm -lncurses -lutil -lgmodule-2.0'
