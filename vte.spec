@@ -9,7 +9,7 @@
 Summary:	A terminal emulator widget
 Name:		vte
 Version:	0.28.2
-Release:	11
+Release:	12
 License:	LGPLv2+
 Group:		System/Libraries
 URL:		http://www.gnome.org/
