@@ -8,12 +8,12 @@
 
 Summary:	A terminal emulator widget
 Name:		vte
-Version:	0.28.2
-Release:	13
+Version:	0.39.92
+Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
 URL:		http://www.gnome.org/
-Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{url_ver}/%{name}-%{version}.tar.xz
+Source0:	ftp://ftp.gnome.org:21/pub/GNOME/sources/vte/0.39/%{name}-%{version}.tar.xz
 Patch1:		honey-I-shrank-the-terminal.patch
 # https://bugzilla.gnome.org/show_bug.cgi?id=663779
 Patch2:		vte-alt-meta-confusion.patch
