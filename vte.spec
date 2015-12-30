@@ -1,4 +1,6 @@
 %define url_ver %(echo %{version}|cut -d. -f1,2)
+%define _disable_rebuild_configure 1
+%define _disable_lto 1
 
 %define api	0.0
 %define major	9
@@ -13,7 +15,7 @@ Release:	15
 License:	LGPLv2+
 Group:		System/Libraries
 URL:		http://www.gnome.org/
-Source0:	ftp://ftp.gnome.org/pub/GNOME/sources/%{name}/%{url_ver}/%{name}-%{version}.tar.xz
+Source0:	http://download.gnome.org/sources/%{name}/%{url_ver}/%{name}-%{version}.tar.xz
 Patch1:		honey-I-shrank-the-terminal.patch
 # https://bugzilla.gnome.org/show_bug.cgi?id=663779
 Patch2:		vte-alt-meta-confusion.patch
@@ -75,6 +77,9 @@ package contains the files needed for building applications using VTE.
 %apply_patches
 
 %build
+export CFLAGS=-fno-lto
+export PYTHON=%__python2
+
 %configure2_5x \
 	--enable-shared \
 	--disable-static \
@@ -85,7 +90,6 @@ package contains the files needed for building applications using VTE.
 	--with-gtk=2.0
 
 %make
-#LIBS='-lm -lncurses -lutil -lgmodule-2.0'
 
 %install
 %makeinstall_std
