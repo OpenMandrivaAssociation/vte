@@ -1,6 +1,7 @@
 %define url_ver %(echo %{version}|cut -d. -f1,2)
 %define _disable_rebuild_configure 1
 %define _disable_lto 1
+%define debug_package %{nil}
 
 %define api	0.0
 %define major	9
