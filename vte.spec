@@ -75,7 +75,7 @@ package contains the files needed for building applications using VTE.
 
 %prep
 %setup -q
-%apply_patches
+%autopatch -p1
 
 %build
 export CFLAGS=-fno-lto
