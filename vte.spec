@@ -15,7 +15,7 @@ Version:	0.28.2
 Release:	18
 License:	LGPLv2+
 Group:		System/Libraries
-URL:		http://www.gnome.org/
+URL:		https://www.gnome.org/
 Source0:	http://download.gnome.org/sources/%{name}/%{url_ver}/%{name}-%{version}.tar.xz
 Patch1:		honey-I-shrank-the-terminal.patch
 # https://bugzilla.gnome.org/show_bug.cgi?id=663779
