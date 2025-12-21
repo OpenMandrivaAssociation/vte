@@ -26,6 +26,11 @@ Patch4:		vte-aarch64.patch
 Patch5:		vte-python-bugfixes.patch
 Patch6:		vte-0.28.0-link.patch
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	gtk-doc
 BuildRequires:	intltool
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
